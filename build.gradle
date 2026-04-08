@@ -1,0 +1,31 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group = 'it.unibo'
+version = '1.0-SNAPSHOT'
+sourceCompatibility = '21'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // LangChain4j core
+    implementation 'dev.langchain4j:langchain4j-core:0.31.0'
+    
+    //TODO: change the provider
+    implementation 'dev.langchain4j:langchain4j-open-ai:0.31.0'
+    
+    // Testing
+    testImplementation 'junit:junit:4.13.2'
+}
+
+application {
+    mainClass = 'it.unibo.Main'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
