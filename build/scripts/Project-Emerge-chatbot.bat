@@ -70,7 +70,7 @@ goto fail
 :execute
 @rem Setup the command line
 
-set CLASSPATH=%APP_HOME%\lib\Project-Emerge-chatbot-1.0-SNAPSHOT.jar;%APP_HOME%\lib\langchain4j-open-ai-0.31.0.jar;%APP_HOME%\lib\langchain4j-core-0.31.0.jar;%APP_HOME%\lib\openai4j-0.17.0.jar;%APP_HOME%\lib\gson-2.10.1.jar;%APP_HOME%\lib\slf4j-api-2.0.7.jar;%APP_HOME%\lib\jtokkit-1.0.0.jar;%APP_HOME%\lib\converter-gson-2.9.0.jar;%APP_HOME%\lib\retrofit-2.9.0.jar;%APP_HOME%\lib\okhttp-sse-4.12.0.jar;%APP_HOME%\lib\okhttp-4.12.0.jar;%APP_HOME%\lib\okio-jvm-3.6.0.jar;%APP_HOME%\lib\kotlin-stdlib-jdk8-1.9.10.jar;%APP_HOME%\lib\kotlin-stdlib-jdk7-1.9.10.jar;%APP_HOME%\lib\kotlin-stdlib-1.9.10.jar;%APP_HOME%\lib\kotlin-stdlib-common-1.9.10.jar;%APP_HOME%\lib\annotations-13.0.jar
+set CLASSPATH=%APP_HOME%\lib\Project-Emerge-chatbot-1.0-SNAPSHOT.jar;%APP_HOME%\lib\langchain4j-1.12.2.jar;%APP_HOME%\lib\langchain4j-google-ai-gemini-1.12.2.jar;%APP_HOME%\lib\slf4j-simple-2.0.12.jar;%APP_HOME%\lib\langchain4j-http-client-jdk-1.12.2.jar;%APP_HOME%\lib\langchain4j-http-client-1.12.2.jar;%APP_HOME%\lib\langchain4j-core-1.12.2.jar;%APP_HOME%\lib\jackson-core-2.21.1.jar;%APP_HOME%\lib\jackson-databind-2.21.1.jar;%APP_HOME%\lib\jackson-annotations-2.21.jar;%APP_HOME%\lib\opennlp-tools-2.5.4.jar;%APP_HOME%\lib\slf4j-api-2.0.17.jar;%APP_HOME%\lib\jspecify-1.0.0.jar
 
 
 @rem Execute Project-Emerge-chatbot

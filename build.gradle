@@ -5,21 +5,29 @@ plugins {
 
 group = 'it.unibo'
 version = '1.0-SNAPSHOT'
-sourceCompatibility = '21'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    // LangChain4j core
-    implementation 'dev.langchain4j:langchain4j-core:0.31.0'
     
-    //TODO: change the provider
-    implementation 'dev.langchain4j:langchain4j-open-ai:0.31.0'
+    // LangChain - Core
+    implementation 'dev.langchain4j:langchain4j:1.12.2'
+    
+    // LangChain - Gemini
+    implementation 'dev.langchain4j:langchain4j-google-ai-gemini:1.12.2'
     
     // Testing
     testImplementation 'junit:junit:4.13.2'
+
+    // Logging
+    implementation 'org.slf4j:slf4j-simple:2.0.12'
 }
 
 application {

@@ -1,7 +1,16 @@
 package it.unibo;
 
+import javax.swing.SwingUtilities;
+
+import it.unibo.view.ChatWindow;
+
 public class Main {
+    
     public static void main(String[] args) {
-        System.out.println("Hello from LangChain4j with Gradle!");
+        SwingUtilities.invokeLater(() -> {
+            ChatWindow window = new ChatWindow();
+            window.setVisible(true);
+        });
     }
+
 }
