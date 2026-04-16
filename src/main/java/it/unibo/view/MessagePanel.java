@@ -45,7 +45,6 @@ public class MessagePanel extends JPanel {
         JPanel bubble = new JPanel(new BorderLayout(5, 2)); // 5px horizontal gap, 2px vertical
         bubble.setBackground(isUser ? new Color(0, 150, 136) : new Color(230, 230, 230));
         bubble.setBorder(BorderFactory.createEmptyBorder(8, 10, 8, 10));
-        bubble.setBorder(new BasicBorders());
 
         // Text Area
         JTextArea textArea = new JTextArea(text);
@@ -56,15 +55,15 @@ public class MessagePanel extends JPanel {
         textArea.setFont(DEFAULT_FONT);
         textArea.setForeground(isUser ? Color.WHITE : Color.BLACK);
 
-        // 4. Time Label
+        // Time Label
         String time = timeFormat.format(new Date());
         JLabel timeLabel = new JLabel(time);
         timeLabel.setFont(new Font("SansSerif", Font.PLAIN, 10)); // Smaller font
         timeLabel.setForeground(isUser ? new Color(200, 200, 200) : Color.GRAY);
         timeLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 
-        // 5. Dynamic Size Calculation
-        int maxWidth = 300;
+        // Dynamic Size Calculation
+        int maxWidth = (int)Math.round(((double)FRAME_WIDTH) * 0.75);
         textArea.setSize(new Dimension(maxWidth, Integer.MAX_VALUE));
         Dimension textDim = textArea.getPreferredSize();
         
@@ -72,11 +71,11 @@ public class MessagePanel extends JPanel {
         int finalWidth = Math.min(maxWidth, textDim.width + 20); 
         bubble.setPreferredSize(new Dimension(finalWidth, textDim.height + 35)); // +25 to make room for the time
 
-        // 6. Assemblaggio della Bolla
+        // Assemblaggio della Bolla
         bubble.add(textArea, BorderLayout.CENTER);
         bubble.add(timeLabel, BorderLayout.SOUTH);
 
-        // 7. Positioning in the row
+        // Positioning in the row
         if (isUser) {
             messageWrapper.add(bubble, BorderLayout.EAST);
         } else {
@@ -86,7 +85,7 @@ public class MessagePanel extends JPanel {
         // Height constraint for BoxLayout
         messageWrapper.setMaximumSize(new Dimension(Integer.MAX_VALUE, bubble.getPreferredSize().height + 10));
 
-        // 8. UI Update (Standard logic)
+        // UI Update (Standard logic)
         if (messageBox.getComponentCount() > 0) {
             messageBox.remove(messageBox.getComponentCount() - 1);
         }

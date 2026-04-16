@@ -1,14 +1,10 @@
 package it.unibo;
 
-import javax.swing.SwingUtilities;
-
-import it.unibo.view.ChatWindow;
+import it.unibo.controller.Controller;
 
 public class Main {
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            ChatWindow window = new ChatWindow();
-            window.setVisible(true);
-        });
+        Controller controller = new Controller();
+        controller.start();
     }
 }

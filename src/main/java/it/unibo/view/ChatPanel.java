@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.function.Consumer;
 
 import static it.unibo.common.Constants.*;
 
@@ -12,8 +13,9 @@ public class ChatPanel extends JPanel {
     private static final int SPACING = 5;
     
     private MessagePanel messagePanel;
-    private JTextField inputField;
+    private JTextArea inputField;
     private JButton sendButton;
+    private Consumer<String> onSendButtonPressedHandler; // Handler for when a message is sent
     
     public ChatPanel() {
         setLayout(new BorderLayout(10, 10));
@@ -30,15 +32,17 @@ public class ChatPanel extends JPanel {
         JPanel bottomPanel = new JPanel(new BorderLayout(SPACING, 0));
         bottomPanel.setBackground(BACKGROUND_COLOR);
 
-        inputField = new JTextField("dgggg gggggggggg gggg gggg ggggggg ggggggggg ggg ggggggggg ggggg ggggggg ggggg ggggg gg gg ggggg gg ggg ggggggg ggg df dfg df gdf gdfgd fg dfg df g dgggg");
+        inputField = new JTextArea("");
         inputField.setFont(DEFAULT_FONT);
         inputField.setBorder(BorderFactory.createLineBorder(BORDER_COLOR));
         inputField.setPreferredSize(new Dimension(0, INPUT_BUTTON_HEIGHT));
+        inputField.setLineWrap(true);
+        inputField.setWrapStyleWord(true);
         inputField.addKeyListener(new KeyListener() {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    sendMessage();
+                    sendButtonPressed();
                 }
             }
 
@@ -51,13 +55,15 @@ public class ChatPanel extends JPanel {
             }
         });
 
+        // JScrollPane inputScroll = new JScrollPane(inputArea);
+
         sendButton = new JButton("Invia");
         sendButton.setPreferredSize(new Dimension(BUTTON_WIDTH, INPUT_BUTTON_HEIGHT));
         sendButton.setBackground(PRIMARY_COLOR);
         sendButton.setForeground(Color.WHITE);
         sendButton.setFocusPainted(false);
         sendButton.setFont(BUTTON_FONT);
-        sendButton.addActionListener(e -> sendMessage());
+        sendButton.addActionListener(e -> sendButtonPressed());   // Action listener for the send button
 
         bottomPanel.add(inputField, BorderLayout.CENTER);
         bottomPanel.add(sendButton, BorderLayout.EAST);
@@ -79,11 +85,13 @@ public class ChatPanel extends JPanel {
         messagePanel.addMessage("SYS: " + message, false);
     }
 
-    private void sendMessage() {
+    private void sendButtonPressed() {
         String userMessage = inputField.getText().trim();
-        if (!userMessage.isEmpty()) {
+        if (!userMessage.isEmpty() && onSendButtonPressedHandler != null) {
             displayUserMessage(userMessage);
-            displayAgentMessage("ok of course");
+            
+            onSendButtonPressedHandler.accept(userMessage); //connecting point between logic and view
+
             inputField.setText("");
             inputField.requestFocus();
         }
@@ -92,5 +100,9 @@ public class ChatPanel extends JPanel {
     public void setEnabled(boolean enabled) {
         inputField.setEnabled(enabled);
         sendButton.setEnabled(enabled);
+    }
+
+    public void setOnMessageSent(Consumer<String> handler) {
+        this.onSendButtonPressedHandler = handler;
     }
 }

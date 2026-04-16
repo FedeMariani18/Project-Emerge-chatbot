@@ -19,7 +19,7 @@ public final class Constants {
     /** Height of the game frame in pixels. */
     public static final int FRAME_HEIGHT = (int) (SH * SCALE);
      /** Height of the game frame in pixels. */
-    public static final int FRAME_WIDTH = (int) (FRAME_HEIGHT * SCALE);
+    public static final int FRAME_WIDTH = (int) (FRAME_HEIGHT / SCALE);
 
 
     // COLORS
@@ -35,7 +35,7 @@ public final class Constants {
     public static final Font TIMESTAMP_FONT = new Font("Arial", Font.PLAIN, 14);
     
     // BUTTON DIMENSIONS
-    public static final int INPUT_BUTTON_HEIGHT = 40;
+    public static final int INPUT_BUTTON_HEIGHT = 80;
     public static final int BUTTON_WIDTH = 100;
 
     // MESSAGE DIMENSIONS

@@ -28,6 +28,9 @@ dependencies {
 
     // Logging
     implementation 'org.slf4j:slf4j-simple:2.0.12'
+
+    // Client MQTT Paho per Java
+    implementation 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.5'
 }
 
 application {
