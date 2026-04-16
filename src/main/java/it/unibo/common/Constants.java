@@ -29,10 +29,10 @@ public final class Constants {
     public static final Color SYSTEM_MESSAGE_TEXT_COLOR = new Color(150, 150, 150);
     
     // FONTS
-    public static final Font DEFAULT_FONT = new Font("Arial", Font.PLAIN, 12);
-    public static final Font BUTTON_FONT = new Font("Arial", Font.BOLD, 12);
-    public static final Font SYSTEM_MESSAGE_FONT = new Font("Arial", Font.ITALIC, 11);
-    public static final Font TIMESTAMP_FONT = new Font("Arial", Font.PLAIN, 10);
+    public static final Font DEFAULT_FONT = new Font("Arial", Font.PLAIN, 18);
+    public static final Font BUTTON_FONT = new Font("Arial", Font.BOLD, 18);
+    public static final Font SYSTEM_MESSAGE_FONT = new Font("Arial", Font.ITALIC, 16);
+    public static final Font TIMESTAMP_FONT = new Font("Arial", Font.PLAIN, 14);
     
     // BUTTON DIMENSIONS
     public static final int INPUT_BUTTON_HEIGHT = 40;

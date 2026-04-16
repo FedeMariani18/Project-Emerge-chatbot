@@ -30,7 +30,7 @@ public class ChatPanel extends JPanel {
         JPanel bottomPanel = new JPanel(new BorderLayout(SPACING, 0));
         bottomPanel.setBackground(BACKGROUND_COLOR);
 
-        inputField = new JTextField();
+        inputField = new JTextField("dgggg gggggggggg gggg gggg ggggggg ggggggggg ggg ggggggggg ggggg ggggggg ggggg ggggg gg gg ggggg gg ggg ggggggg ggg df dfg df gdf gdfgd fg dfg df g dgggg");
         inputField.setFont(DEFAULT_FONT);
         inputField.setBorder(BorderFactory.createLineBorder(BORDER_COLOR));
         inputField.setPreferredSize(new Dimension(0, INPUT_BUTTON_HEIGHT));
@@ -76,7 +76,7 @@ public class ChatPanel extends JPanel {
     }
 
     public void displaySystemMessage(String message) {
-        messagePanel.addSystemMessage(message);
+        messagePanel.addMessage("SYS: " + message, false);
     }
 
     private void sendMessage() {
