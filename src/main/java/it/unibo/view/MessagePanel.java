@@ -1,6 +1,8 @@
 package it.unibo.view;
 
 import javax.swing.*;
+import javax.swing.plaf.basic.BasicBorders;
+
 import java.awt.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -34,37 +36,57 @@ public class MessagePanel extends JPanel {
     }
 
     public void addMessage(String text, boolean isUser) {
+        // The outer wrapper (the chat row)
         JPanel messageWrapper = new JPanel(new BorderLayout());
         messageWrapper.setBackground(BACKGROUND_COLOR);
         messageWrapper.setBorder(BorderFactory.createEmptyBorder(MESSAGE_PADDING, MESSAGE_HORIZONTAL_PADDING, MESSAGE_PADDING, MESSAGE_HORIZONTAL_PADDING));
 
-        JTextArea balloon = new JTextArea(text);
-        balloon.setLineWrap(true);
-        balloon.setWrapStyleWord(true);
-        balloon.setEditable(false);
-        balloon.setFocusable(false);
-        balloon.setFont(DEFAULT_FONT);
-        
-        balloon.setOpaque(true);
-        balloon.setBackground(isUser ? new Color(0, 150, 136) : new Color(230, 230, 230));
-        balloon.setForeground(isUser ? Color.WHITE : Color.BLACK);
-        balloon.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        // The actual "Bubble" (a JPanel instead of a JTextArea)
+        JPanel bubble = new JPanel(new BorderLayout(5, 2)); // 5px horizontal gap, 2px vertical
+        bubble.setBackground(isUser ? new Color(0, 150, 136) : new Color(230, 230, 230));
+        bubble.setBorder(BorderFactory.createEmptyBorder(8, 10, 8, 10));
+        bubble.setBorder(new BasicBorders());
 
-        int maxWidth = 300; 
-        balloon.setSize(new Dimension(maxWidth, Integer.MAX_VALUE)); 
-        
-        Dimension d = balloon.getPreferredSize();
-        d.width = maxWidth;
-        balloon.setPreferredSize(d); 
+        // Text Area
+        JTextArea textArea = new JTextArea(text);
+        textArea.setLineWrap(true);
+        textArea.setWrapStyleWord(true);
+        textArea.setEditable(false);
+        textArea.setOpaque(false); // Transparent to show the bubble color
+        textArea.setFont(DEFAULT_FONT);
+        textArea.setForeground(isUser ? Color.WHITE : Color.BLACK);
 
+        // 4. Time Label
+        String time = timeFormat.format(new Date());
+        JLabel timeLabel = new JLabel(time);
+        timeLabel.setFont(new Font("SansSerif", Font.PLAIN, 10)); // Smaller font
+        timeLabel.setForeground(isUser ? new Color(200, 200, 200) : Color.GRAY);
+        timeLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+
+        // 5. Dynamic Size Calculation
+        int maxWidth = 300;
+        textArea.setSize(new Dimension(maxWidth, Integer.MAX_VALUE));
+        Dimension textDim = textArea.getPreferredSize();
+        
+        // If the text is narrower than 300px, the bubble shrinks (optional)
+        int finalWidth = Math.min(maxWidth, textDim.width + 20); 
+        bubble.setPreferredSize(new Dimension(finalWidth, textDim.height + 35)); // +25 to make room for the time
+
+        // 6. Assemblaggio della Bolla
+        bubble.add(textArea, BorderLayout.CENTER);
+        bubble.add(timeLabel, BorderLayout.SOUTH);
+
+        // 7. Positioning in the row
         if (isUser) {
-            messageWrapper.add(balloon, BorderLayout.EAST);
+            messageWrapper.add(bubble, BorderLayout.EAST);
         } else {
-            messageWrapper.add(balloon, BorderLayout.WEST);
+            messageWrapper.add(bubble, BorderLayout.WEST);
         }
 
-        messageWrapper.setMaximumSize(new Dimension(Integer.MAX_VALUE, balloon.getPreferredSize().height + (MESSAGE_PADDING * 2)));
+        // Height constraint for BoxLayout
+        messageWrapper.setMaximumSize(new Dimension(Integer.MAX_VALUE, bubble.getPreferredSize().height + 10));
 
+        // 8. UI Update (Standard logic)
         if (messageBox.getComponentCount() > 0) {
             messageBox.remove(messageBox.getComponentCount() - 1);
         }
@@ -74,9 +96,8 @@ public class MessagePanel extends JPanel {
 
         messageBox.revalidate();
         messageBox.repaint();
-
-        SwingUtilities.invokeLater(() -> {
-            messageBox.scrollRectToVisible(messageWrapper.getBounds());
-        });
+        
+        // Auto-scroll
+        SwingUtilities.invokeLater(() -> messageBox.scrollRectToVisible(messageWrapper.getBounds()));
     }
 }
