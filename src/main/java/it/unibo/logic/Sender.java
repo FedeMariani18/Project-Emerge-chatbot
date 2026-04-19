@@ -1,15 +1,7 @@
 package it.unibo.logic;
 
 public interface Sender {
-    
-    /**
-     * Sends an MQTT message to the specified topic
-     * @param topic the MQTT topic (e.g. "drones/command")
-     * @param message the message payload
-     * @return true if sending succeeded, false otherwise
-     */
-    boolean sendMqttMessage(String topic, String message);
-    
+
     /**
      * Sends a formation command to the drones
      * @param formation the name of the formation (e.g. "V", "rectangle")
@@ -26,8 +18,9 @@ public interface Sender {
     
     /**
      * Disconnects the MQTT client from the broker
+     * @return false if something gone wrong
      */
-    void disconnect();
+    boolean disconnect();
     
     /**
      * Checks whether the client is connected
