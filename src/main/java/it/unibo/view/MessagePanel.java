@@ -1,7 +1,6 @@
 package it.unibo.view;
 
 import javax.swing.*;
-import javax.swing.plaf.basic.BasicBorders;
 
 import java.awt.*;
 import java.text.SimpleDateFormat;
@@ -12,7 +11,6 @@ import static it.unibo.common.Constants.*;
 public class MessagePanel extends JPanel {
     private static final int MESSAGE_PADDING = 5;
     private static final int MESSAGE_HORIZONTAL_PADDING = 10;
-    private static final int SYSTEM_MESSAGE_PADDING = 10;
     private static final int VERTICAL_STRUT_SIZE = 5;
     
     private Box messageBox;
