@@ -13,15 +13,19 @@ public class MqttSender implements Sender{
 
     public MqttSender() {}
 
-    @Override
-    public boolean sendFormation(String formation, String parameters) {
+    public boolean sendMqttMessage(String topic, String message) {
         try {
-            client.publish(FORMATION_TOPIC, (formation + "\n" + parameters).getBytes(), 1, false);
+            client.publish(topic, message.getBytes(), 1, false);
             return true;
         } catch (MqttException e) {
             System.out.println(e.getMessage());
             return false;
         }
+    }
+
+    @Override
+    public boolean sendFormation(String formation, String parameters) {
+        return sendMqttMessage( FORMATION_TOPIC, formation + "\n" + parameters );
     }
 
     @Override
