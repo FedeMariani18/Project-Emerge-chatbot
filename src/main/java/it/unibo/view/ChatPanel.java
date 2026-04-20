@@ -2,6 +2,7 @@ package it.unibo.view;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.function.Consumer;
@@ -13,7 +14,7 @@ public class ChatPanel extends JPanel {
     private static final int SPACING = 5;
     
     private MessagePanel messagePanel;
-    private JTextArea inputField;
+    private JTextArea inputArea;
     private JButton sendButton;
     private Consumer<String> onSendButtonPressedHandler; // Handler for when a message is sent
     
@@ -32,30 +33,33 @@ public class ChatPanel extends JPanel {
         JPanel bottomPanel = new JPanel(new BorderLayout(SPACING, 0));
         bottomPanel.setBackground(BACKGROUND_COLOR);
 
-        inputField = new JTextArea("");
-        inputField.setFont(DEFAULT_FONT);
-        inputField.setBorder(BorderFactory.createLineBorder(BORDER_COLOR));
-        inputField.setPreferredSize(new Dimension(0, INPUT_BUTTON_HEIGHT));
-        inputField.setLineWrap(true);
-        inputField.setWrapStyleWord(true);
-        inputField.addKeyListener(new KeyListener() {
+        // Input area
+        inputArea = new JTextArea("");
+        inputArea.setFont(DEFAULT_FONT);
+        inputArea.setLineWrap(true);
+        inputArea.setWrapStyleWord(true);
+        inputArea.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    sendButtonPressed();
+                    if (e.isShiftDown()) {
+                        inputArea.replaceSelection("\n");
+                        inputArea.setCaretPosition(inputArea.getDocument().getLength());
+                        e.consume();
+                    } else {
+                        e.consume();
+                        sendButtonPressed();
+                    }
                 }
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-            }
-
-            @Override
-            public void keyTyped(KeyEvent e) {
             }
         });
 
-        // JScrollPane inputScroll = new JScrollPane(inputArea);
+        // Vertical scroll bar for the input area 
+        JScrollPane inputScroll = new JScrollPane(inputArea);
+        inputScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        inputScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        inputScroll.setBorder(BorderFactory.createLineBorder(BORDER_COLOR));
+        inputScroll.setPreferredSize(new Dimension(0, INPUT_BUTTON_HEIGHT));
 
         sendButton = new JButton("Invia");
         sendButton.setPreferredSize(new Dimension(BUTTON_WIDTH, INPUT_BUTTON_HEIGHT));
@@ -65,7 +69,7 @@ public class ChatPanel extends JPanel {
         sendButton.setFont(BUTTON_FONT);
         sendButton.addActionListener(e -> sendButtonPressed());   // Action listener for the send button
 
-        bottomPanel.add(inputField, BorderLayout.CENTER);
+        bottomPanel.add(inputScroll, BorderLayout.CENTER);
         bottomPanel.add(sendButton, BorderLayout.EAST);
 
         // Add components to the main panel
@@ -86,19 +90,19 @@ public class ChatPanel extends JPanel {
     }
 
     private void sendButtonPressed() {
-        String userMessage = inputField.getText().trim();
+        String userMessage = inputArea.getText().trim();
         if (!userMessage.isEmpty() && onSendButtonPressedHandler != null) {
             displayUserMessage(userMessage);
             displayAgentMessage("Hi, this is a message by the Agent");
             //onSendButtonPressedHandler.accept(userMessage); //connecting point between logic and view
 
-            inputField.setText("");
-            inputField.requestFocus();
+            inputArea.setText("");
+            inputArea.requestFocus();
         }
     }
 
     public void setEnabled(boolean enabled) {
-        inputField.setEnabled(enabled);
+        inputArea.setEnabled(enabled);
         sendButton.setEnabled(enabled);
     }
 
