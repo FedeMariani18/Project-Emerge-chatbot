@@ -11,11 +11,11 @@ public class Controller {
     Agent agent;
     
     public Controller() {
-        ChatPanel chatPanel = new ChatPanel(); 
-        chatWindow = new ChatWindow(chatPanel);
+        chatWindow = new ChatWindow();
+        ChatPanel chatPanel = chatWindow.getChatPanel();
         agent = new Agent();
 
-        // to set the action listener of the send button
+        // To set the action listener of the send button
         chatPanel.setOnMessageSent(userInput -> {
             new Thread(() -> {
                 try {

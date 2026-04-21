@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface FormationProvider {
     
-    public String getStringFormations();
-
     public List<Formation> getFormations();
+
+    public String getFormationsString();
 }

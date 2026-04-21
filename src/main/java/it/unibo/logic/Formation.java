@@ -1,23 +1,32 @@
 package it.unibo.logic;
 
-import java.util.Map;
+import java.util.List;
 
 public class Formation {
     String name;
     String description;
-    Map<String, Object> attributes;
+    List<Parameter<Double>> parameters;
 
-    public Formation (String name, String description, Map<String, Object> attributes) {
+    /***
+     * @param name the name of the formation
+     * @param description the description of the formation
+     * @param parameters an association of  
+     */
+    public Formation (String name, String description, List<Parameter<Double>> parameters) {
         this.name = name;
         this.description = description;
-        this.attributes = Map.copyOf(attributes);
+        this.parameters = List.copyOf(parameters);
     }
 
     public String getName() {
         return name;
     }
 
-    public Map<String, Object> getAttributes() {
-        return attributes;
+    public String getDescription() {
+        return description;
+    }
+
+    public List<Parameter<Double>> getParameters() {
+        return parameters;
     }
 }

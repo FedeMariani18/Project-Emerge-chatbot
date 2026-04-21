@@ -8,7 +8,9 @@ import static it.unibo.common.Constants.*;
 
 public class ChatWindow extends JFrame {
 
-    public ChatWindow(ChatPanel chatPanel) {
+    ChatPanel chatPanel;
+
+    public ChatWindow() {
         setTitle("Project Emerge Chatbot");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
@@ -16,6 +18,11 @@ public class ChatWindow extends JFrame {
         setResizable(true);
         setMinimumSize(new Dimension((int)FRAME_WIDTH/2, (int)FRAME_HEIGHT/2));
 
+        chatPanel = new ChatPanel(); 
         add(chatPanel, BorderLayout.CENTER);
+    }
+
+    public ChatPanel getChatPanel(){
+        return chatPanel;
     }
 }
