@@ -92,8 +92,8 @@ public class ChatPanel extends JPanel {
         String userMessage = inputArea.getText().trim();
         if (!userMessage.isEmpty() && onSendButtonPressedHandler != null) {
             displayUserMessage(userMessage);
-            displayAgentMessage("Hi, this is a message by the Agent");
-            //onSendButtonPressedHandler.accept(userMessage); //connecting point between logic and view
+            
+            onSendButtonPressedHandler.accept(userMessage); //connecting point between logic and view
 
             inputArea.setText("");
             inputArea.requestFocus();

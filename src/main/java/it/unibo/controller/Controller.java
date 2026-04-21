@@ -3,17 +3,27 @@ package it.unibo.controller;
 import javax.swing.SwingUtilities;
 
 import it.unibo.logic.Agent;
+import it.unibo.logic.FormationProvider;
+import it.unibo.logic.FormationProviderImpl;
+import it.unibo.logic.Sender;
+import it.unibo.logic.MqttSender;
+import it.unibo.logic.ToolsHandler;
 import it.unibo.view.ChatPanel;
 import it.unibo.view.ChatWindow;
 
 public class Controller {
     ChatWindow chatWindow;
+    ChatPanel chatPanel;
     Agent agent;
     
     public Controller() {
         chatWindow = new ChatWindow();
+        
         ChatPanel chatPanel = chatWindow.getChatPanel();
-        agent = new Agent();
+        FormationProvider formationProvider = new FormationProviderImpl();
+        Sender sender = new MqttSender();
+        ToolsHandler tools = new ToolsHandler(formationProvider, sender);
+        Agent agent = new Agent(tools);
 
         // To set the action listener of the send button
         chatPanel.setOnMessageSent(userInput -> {
