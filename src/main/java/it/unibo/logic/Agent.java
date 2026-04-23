@@ -9,7 +9,6 @@ import dev.langchain4j.service.SystemMessage;
 
 public class Agent {
 
-    private static final String API_KEY = System.getenv("GEMINI_API_KEY");
     private static final String SYSTEM_PROMPT = """
         Tu sei un assistente IA specializzato nel controllo di sciami di droni.
         Il tuo compito è guidare l'utente nella selezione della formazione più adatta alle sue esigenze.
@@ -35,6 +34,7 @@ public class Agent {
         
         TONE: Professionale ma amichevole, tecnico ma comprensibile
         """;
+    private static final String API_KEY = System.getenv("GEMINI_API_KEY");
 
     interface Assistant {
         @SystemMessage(SYSTEM_PROMPT)
