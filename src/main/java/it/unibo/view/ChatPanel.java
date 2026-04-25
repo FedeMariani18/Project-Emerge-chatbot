@@ -15,6 +15,7 @@ public class ChatPanel extends JPanel {
     private MessagePanel messagePanel;
     private JTextArea inputArea;
     private JButton sendButton;
+    private JProgressBar loadingBar;
     private Consumer<String> onSendButtonPressedHandler; // Handler for when a message is sent
     
     public ChatPanel() {
@@ -27,6 +28,11 @@ public class ChatPanel extends JPanel {
         JScrollPane scrollPane = new JScrollPane(messagePanel);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setBorder(BorderFactory.createLineBorder(BORDER_COLOR));
+
+        // Loading bar (inizialmente invisibile)
+        loadingBar = new JProgressBar();
+        loadingBar.setIndeterminate(true);
+        loadingBar.setVisible(false);
 
         // Bottom panel with input and button
         JPanel bottomPanel = new JPanel(new BorderLayout(SPACING, 0));
@@ -73,6 +79,7 @@ public class ChatPanel extends JPanel {
 
         // Add components to the main panel
         add(scrollPane, BorderLayout.CENTER);
+        add(loadingBar, BorderLayout.NORTH);
         add(bottomPanel, BorderLayout.SOUTH);
     }
 
@@ -86,6 +93,10 @@ public class ChatPanel extends JPanel {
 
     public void displaySystemMessage(String message) {
         messagePanel.addMessage("SYS: " + message, false);
+    }
+
+    public void showLoading(boolean show) {
+        loadingBar.setVisible(show);
     }
 
     private void sendButtonPressed() {

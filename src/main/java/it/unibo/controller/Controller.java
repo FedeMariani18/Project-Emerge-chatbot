@@ -18,31 +18,40 @@ public class Controller {
     
     public Controller() {
         chatWindow = new ChatWindow();
-        
-        ChatPanel chatPanel = chatWindow.getChatPanel();
+        chatPanel = chatWindow.getChatPanel();
+
         FormationProvider formationProvider = new FormationProviderImpl();
         Sender sender = new MqttSender();
         if (!sender.connect()) System.out.println("Unable to connect to the MQTT broker");
         ToolsHandler tools = new ToolsHandler(formationProvider, sender);
-        Agent agent = new Agent(tools);
 
+        agent = new Agent(tools);
+        
         // To set the action listener of the send button
-        chatPanel.setOnMessageSent(userInput -> {
-            new Thread(() -> {
-                try {
-                    String response = agent.chat(userInput);
-                    
-                    // display the response in the GUI
-                    SwingUtilities.invokeLater(() -> {
-                        chatPanel.displayAgentMessage(response);
-                    });
-                } catch (Exception e) {
-                    SwingUtilities.invokeLater(() -> {
-                        chatPanel.displayAgentMessage("Errore: " + e.getMessage());
-                    });
-                }
-            }).start();
-        });
+        chatPanel.setOnMessageSent(userInput -> processUserInput(userInput));
+    }
+
+    public void processUserInput(String userMessage) {
+        chatPanel.setEnabled(false);
+        chatPanel.showLoading(true);
+
+        new Thread(() -> {
+            try {
+                String response = agent.chat(userMessage);
+                
+                // display the response in the GUI
+                SwingUtilities.invokeLater(() -> {
+                    chatPanel.displayAgentMessage(response);
+                });
+            } catch (Exception e) {
+                SwingUtilities.invokeLater(() -> {
+                    chatPanel.displayAgentMessage("Errore: " + e.getMessage());
+                });
+            } finally {
+                chatPanel.showLoading(false);
+                chatPanel.setEnabled(true);
+            }
+        }).start();
     }
 
     public void start(){
