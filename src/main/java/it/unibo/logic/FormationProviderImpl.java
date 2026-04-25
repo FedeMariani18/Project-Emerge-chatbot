@@ -14,18 +14,18 @@ public class FormationProviderImpl implements FormationProvider{
     private static final String FILE_NAME = "formation_param_descriptions.json"; 
 
     private ObjectMapper mapper;
-    private InputStream inputStream;
     private List<Formation> formations = new LinkedList<Formation>();
 
     public FormationProviderImpl() {
         mapper = new ObjectMapper();
-        inputStream = getClass().getClassLoader().getResourceAsStream(FILE_NAME);
     }
 
     private List<Formation> readFormationsFromFile() {
         List<Formation> formationsReaded = new ArrayList<>();
-        
+    
         try {
+            InputStream inputStream = getClass().getClassLoader().getResourceAsStream(FILE_NAME);
+
             Map<String, Formation> formationsMap = mapper.readValue( inputStream, new TypeReference<Map<String, Formation>>() {} );
             formationsMap.forEach((key, formation) -> {
                 formation.setName(key);
