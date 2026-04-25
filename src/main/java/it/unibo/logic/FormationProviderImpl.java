@@ -46,12 +46,20 @@ public class FormationProviderImpl implements FormationProvider{
 
     @Override
     public String getFormationsJson() {
-        String res = "";
         try {
-            res = new String(inputStream.readAllBytes());
+            InputStream inputStream = getClass().getClassLoader().getResourceAsStream(FILE_NAME);
+        
+            if (inputStream == null) {
+                System.out.println("File not found: " + FILE_NAME);
+                return "";
+            }
+            
+            String json = new String(inputStream.readAllBytes());
+            inputStream.close();
+            return json;
         } catch (IOException e) {
-            System.out.println("error reading the json file (file name: " + FILE_NAME + ")\n" + e.getMessage());
+            System.out.println("Error reading the json file (file name: " + FILE_NAME + ")\n" + e.getMessage());
+            return "";
         }
-        return res;
     }
 }

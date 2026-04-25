@@ -22,6 +22,7 @@ public class Controller {
         ChatPanel chatPanel = chatWindow.getChatPanel();
         FormationProvider formationProvider = new FormationProviderImpl();
         Sender sender = new MqttSender();
+        if (!sender.connect()) System.out.println("Unable to connect to the MQTT broker");
         ToolsHandler tools = new ToolsHandler(formationProvider, sender);
         Agent agent = new Agent(tools);
 

@@ -5,7 +5,7 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 
 public class MqttSender implements Sender{
 
-    private static final String BROKER = "tcp://broker.emqx.io:1883"; //System.getenv().getOrDefault("MQTT_URL", "tcp://localhost:1883")
+    private static final String BROKER = "tcp://localhost:1883";
     private static final String CLIENT_ID = "ChatbotClient";
     private static final String FORMATION_TOPIC = "sensing";
 
@@ -24,8 +24,8 @@ public class MqttSender implements Sender{
     }
 
     @Override
-    public boolean sendFormation(String formation, String parameters) {
-        return sendMqttMessage( FORMATION_TOPIC, formation + "\n" + parameters );
+    public boolean sendFormation(String formation) {
+        return sendMqttMessage( FORMATION_TOPIC, formation);
     }
 
     @Override

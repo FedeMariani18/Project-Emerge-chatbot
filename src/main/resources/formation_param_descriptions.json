@@ -8,8 +8,8 @@
     "label": "V Shape",
     "description": "Formazione a V con distanza tra agenti, angolo di apertura e parametri di sicurezza/stabilità.",
     "parameters": {
-      "interDistanceV": "Distanza desiderata tra agenti consecutivi nei due rami della formazione a V.",
-      "angleV": "Angolo caratteristico della V, espresso in radianti. Il valore negativo orienta l'apertura secondo la convenzione del controller.",
+      "interDistanceV": "Distanza desiderata tra agenti consecutivi nei due rami della formazione a V. (valore di default: 0.4)",
+      "angleV": "Angolo caratteristico della V, espresso in radianti. Il valore negativo orienta l'apertura secondo la convenzione del controller. (valore di default: -0.78)",
       "collisionArea": "Soglia o area di sicurezza usata per evitare collisioni tra agenti durante il mantenimento della formazione.",
       "stabilityThreshold": "Soglia usata per considerare la formazione stabile o sufficientemente convergente."
     }
@@ -18,7 +18,7 @@
     "label": "Line Shape",
     "description": "Formazione lineare orizzontale con distanza uniforme e controlli di sicurezza/stabilità.",
     "parameters": {
-      "interDistanceLine": "Distanza desiderata tra agenti consecutivi lungo la linea.",
+      "interDistanceLine": "Distanza desiderata tra agenti consecutivi lungo la linea. (valore di default: 0.4)",
       "collisionArea": "Soglia o area di sicurezza usata per evitare collisioni tra agenti.",
       "stabilityThreshold": "Soglia usata per considerare la linea stabile o raggiunta."
     }
@@ -27,7 +27,7 @@
     "label": "Circle Shape",
     "description": "Formazione circolare con raggio configurabile e parametri di sicurezza/stabilità.",
     "parameters": {
-      "radius": "Raggio desiderato del cerchio su cui distribuire gli agenti.",
+      "radius": "Raggio desiderato del cerchio su cui distribuire gli agenti. (valore di default: 0.6)",
       "collisionArea": "Soglia o area di sicurezza usata per evitare collisioni durante il posizionamento sul cerchio.",
       "stabilityThreshold": "Soglia usata per considerare la disposizione circolare stabile o completata."
     }
@@ -36,7 +36,7 @@
     "label": "Square Shape",
     "description": "Formazione quadrata con spaziatura uniforme e controlli di sicurezza/stabilità.",
     "parameters": {
-      "interDistanceSquare": "Distanza desiderata tra agenti o lato/intervallo caratteristico della formazione quadrata.",
+      "interDistanceSquare": "Distanza desiderata tra agenti o lato/intervallo caratteristico della formazione quadrata. (valore di default: 0.4)",
       "collisionArea": "Soglia o area di sicurezza usata per evitare collisioni tra agenti.",
       "stabilityThreshold": "Soglia usata per considerare la formazione quadrata stabile o raggiunta."
     }
@@ -45,7 +45,7 @@
     "label": "Vertical Line Shape",
     "description": "Formazione lineare verticale con distanza uniforme e controlli di sicurezza/stabilità.",
     "parameters": {
-      "interDistanceVertical": "Distanza desiderata tra agenti consecutivi lungo la linea verticale.",
+      "interDistanceVertical": "Distanza desiderata tra agenti consecutivi lungo la linea verticale. (valore di default: 0.4)",
       "collisionArea": "Soglia o area di sicurezza usata per evitare collisioni tra agenti.",
       "stabilityThreshold": "Soglia usata per considerare la linea verticale stabile o raggiunta."
     }
