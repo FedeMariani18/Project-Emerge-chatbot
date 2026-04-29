@@ -3,13 +3,16 @@ package it.unibo.controller;
 import javax.swing.SwingUtilities;
 
 import it.unibo.logic.Agent;
+import it.unibo.logic.ChatModelFactory;
 import it.unibo.logic.FormationProvider;
 import it.unibo.logic.FormationProviderImpl;
 import it.unibo.logic.Sender;
 import it.unibo.logic.MqttSender;
 import it.unibo.logic.ToolsHandler;
+import it.unibo.logic.ModelProvider;
 import it.unibo.view.ChatPanel;
 import it.unibo.view.ChatWindow;
+
 
 public class Controller {
     ChatWindow chatWindow;
@@ -24,8 +27,9 @@ public class Controller {
         Sender sender = new MqttSender();
         if (!sender.connect()) System.out.println("Unable to connect to the MQTT broker");
         ToolsHandler tools = new ToolsHandler(formationProvider, sender);
+        ChatModelFactory chatModelFactory = new ChatModelFactory();
 
-        agent = new Agent(tools);
+        agent = new Agent(chatModelFactory.createGeminiChatModel(ModelProvider.GEMINI_2_5_FLASH.getName()), tools);
         
         // To set the action listener of the send button
         chatPanel.setOnMessageSent(userInput -> processUserInput(userInput));

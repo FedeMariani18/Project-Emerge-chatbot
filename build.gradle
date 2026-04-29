@@ -22,6 +22,9 @@ dependencies {
     
     // LangChain - Gemini
     implementation 'dev.langchain4j:langchain4j-google-ai-gemini:1.12.2'
+
+    //LangChain - OpenAi
+    implementation 'dev.langchain4j:langchain4j-open-ai:1.12.2'
     
     // Testing
     testImplementation 'junit:junit:4.13.2'

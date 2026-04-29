@@ -55,8 +55,7 @@ public class Agent {
         TONE: Professionale ma amichevole, tecnico ma comprensibile
         """;
     //#endregion
-    private static final String API_KEY = System.getenv("GEMINI_API_KEY");
-
+    
     interface Assistant {
         @SystemMessage(SYSTEM_PROMPT)
         String chat(String message);
@@ -65,19 +64,10 @@ public class Agent {
     private ToolsHandler tools;
     private Assistant assistant;
 
-    public Agent(ToolsHandler tools) {
+    public Agent(ChatModel model, ToolsHandler tools) {
         this.tools = tools;
 
-        if (API_KEY == null || API_KEY.isEmpty()) {
-            System.err.println("ERRORE: GEMINI_API_KEY variable is not configurated!");
-        }
-
         ChatMemory chatMemory = MessageWindowChatMemory.withMaxMessages(10);
-        
-        ChatModel model = GoogleAiGeminiChatModel.builder()
-            .apiKey(API_KEY)
-            .modelName("gemini-2.5-flash")
-            .build();
 
         assistant = AiServices.builder(Assistant.class)
             .chatModel(model)
