@@ -58,7 +58,7 @@ public class ToolsHandler {
             return "Error: no Formations with this program name";
         }
         
-        Set<String> requiredFields = f.get().getParameters().keySet();
+        Set<String> requiredFields = new HashSet<>(f.get().getParameters().keySet());
         requiredFields.add("program");
         Set<String> jsonFields = new HashSet<>();
         

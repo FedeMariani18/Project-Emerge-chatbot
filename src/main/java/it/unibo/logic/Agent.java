@@ -63,8 +63,13 @@ public class Agent {
     private ToolsHandler tools;
     private Assistant assistant;
 
-    public Agent(ChatModel model, ToolsHandler tools) {
+    public Agent(ToolsHandler tools) {
         this.tools = tools;
+        
+        ChatModelFactory factory = new ChatModelFactory();
+        
+        //ChatModel model = factory.createGeminiChatModel(ModelProvider.GEMINI_2_5_FLASH.getName());
+        ChatModel model = factory.createOpenaiChatModel();
 
         ChatMemory chatMemory = MessageWindowChatMemory.withMaxMessages(10);
 

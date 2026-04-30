@@ -27,9 +27,8 @@ public class Controller {
         Sender sender = new MqttSender();
         if (!sender.connect()) System.out.println("Unable to connect to the MQTT broker");
         ToolsHandler tools = new ToolsHandler(formationProvider, sender);
-        ChatModelFactory chatModelFactory = new ChatModelFactory();
 
-        agent = new Agent(chatModelFactory.createGeminiChatModel(ModelProvider.GEMINI_2_5_FLASH.getName()), tools);
+        agent = new Agent(tools);
         
         // To set the action listener of the send button
         chatPanel.setOnMessageSent(userInput -> processUserInput(userInput));

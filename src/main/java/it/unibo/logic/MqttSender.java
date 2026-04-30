@@ -25,6 +25,7 @@ public class MqttSender implements Sender{
 
     @Override
     public boolean sendFormation(String formation) {
+        if(!isConnected()) { connect(); }
         return sendMqttMessage( FORMATION_TOPIC, formation);
     }
 
