@@ -23,11 +23,8 @@ public class ChatPanel extends JPanel {
         setBackground(BACKGROUND_COLOR);
         setBorder(BorderFactory.createEmptyBorder(PADDING, PADDING, PADDING, PADDING));
 
-        // Panel for messages with scroll
+        // Panel for messages with scroll inside itself
         messagePanel = new MessagePanel();
-        JScrollPane scrollPane = new JScrollPane(messagePanel);
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.setBorder(BorderFactory.createLineBorder(BORDER_COLOR));
 
         // Loading bar (inizialmente invisibile)
         loadingBar = new JProgressBar();
@@ -78,7 +75,7 @@ public class ChatPanel extends JPanel {
         bottomPanel.add(sendButton, BorderLayout.EAST);
 
         // Add components to the main panel
-        add(scrollPane, BorderLayout.CENTER);
+        add(messagePanel, BorderLayout.CENTER);
         add(loadingBar, BorderLayout.NORTH);
         add(bottomPanel, BorderLayout.SOUTH);
     }

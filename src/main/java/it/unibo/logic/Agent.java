@@ -3,7 +3,6 @@ package it.unibo.logic;
 import dev.langchain4j.memory.ChatMemory;
 import dev.langchain4j.memory.chat.MessageWindowChatMemory;
 import dev.langchain4j.model.chat.ChatModel;
-import dev.langchain4j.model.googleai.GoogleAiGeminiChatModel;
 import dev.langchain4j.service.AiServices;
 import dev.langchain4j.service.SystemMessage;
 
@@ -55,7 +54,7 @@ public class Agent {
         TONE: Professionale ma amichevole, tecnico ma comprensibile
         """;
     //#endregion
-    
+
     interface Assistant {
         @SystemMessage(SYSTEM_PROMPT)
         String chat(String message);

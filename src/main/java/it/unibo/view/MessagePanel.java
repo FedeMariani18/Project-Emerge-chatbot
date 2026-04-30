@@ -14,6 +14,7 @@ public class MessagePanel extends JPanel {
     private static final int VERTICAL_STRUT_SIZE = 5;
     
     private Box messageBox;
+    private JScrollPane scrollPane;
     private SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
 
     public MessagePanel() {
@@ -25,7 +26,7 @@ public class MessagePanel extends JPanel {
         messageBox.setOpaque(true);
         messageBox.add(Box.createVerticalGlue());
         
-        JScrollPane scrollPane = new JScrollPane(messageBox);
+        scrollPane = new JScrollPane(messageBox);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setBorder(null);
@@ -95,6 +96,9 @@ public class MessagePanel extends JPanel {
         messageBox.repaint();
         
         // Auto-scroll
-        SwingUtilities.invokeLater(() -> messageBox.scrollRectToVisible(messageWrapper.getBounds()));
+        SwingUtilities.invokeLater(() -> {
+            JScrollBar vertical = scrollPane.getVerticalScrollBar();
+            vertical.setValue(vertical.getMaximum());
+        });
     }
 }

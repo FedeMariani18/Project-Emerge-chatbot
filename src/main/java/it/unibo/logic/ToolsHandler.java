@@ -32,10 +32,6 @@ public class ToolsHandler {
         
         try {
             JsonNode json = objMapper.readTree(formation);
-            
-            if (!json.has("program")) { 
-                return "Error: the json need a field 'program'";
-            }
 
             return chackProgram(json);
         }
@@ -54,12 +50,16 @@ public class ToolsHandler {
         List<Formation> formations = formationProvider.getFormations();
         
         // Check if there a formation in the file with this name 
-        Optional<Formation> f = formations.stream().filter(formation -> formation.getLabel() == jsonFormation.get("program").asText()).findAny();
+        Optional<Formation> f = formations.stream()
+            .filter(formation -> formation.getName().equals(jsonFormation.get("program").asText()))
+            .findAny();
+
         if (f.isEmpty()) {
             return "Error: no Formations with this program name";
         }
         
         Set<String> requiredFields = f.get().getParameters().keySet();
+        requiredFields.add("program");
         Set<String> jsonFields = new HashSet<>();
         
         jsonFormation.fieldNames().forEachRemaining(jsonFields::add);
