@@ -2,6 +2,7 @@ package it.unibo.logic;
 
 import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.model.googleai.GoogleAiGeminiChatModel;
+import dev.langchain4j.model.ollama.OllamaChatModel;
 import dev.langchain4j.model.openai.OpenAiChatModel;
 
 public class ChatModelFactory {
@@ -31,6 +32,18 @@ public class ChatModelFactory {
     public ChatModel createOpenaiChatModel(){
         return createOpenaiChatModel(ModelProvider.OPENAI_DEFAULT.getName());
     }
+
+    public ChatModel createOllamaChatModel(String modelName){
+        
+        return OllamaChatModel.builder()
+            .baseUrl("http://127.0.0.1:11434")
+            .modelName(modelName)
+            .build();
+    }
+
+    public ChatModel createOllamaChatModel() {
+        return createOllamaChatModel(ModelProvider.OLLAMA_MISTRAL.getName());
+    }
     
     private String getApiKey(String apiKeyCode) {
         String apiKey = System.getenv(apiKeyCode);
@@ -39,4 +52,6 @@ public class ChatModelFactory {
         }
         return apiKey;
     }
+
+
 }

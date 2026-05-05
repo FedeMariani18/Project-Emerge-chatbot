@@ -25,6 +25,9 @@ dependencies {
 
     //LangChain - OpenAi
     implementation 'dev.langchain4j:langchain4j-open-ai:1.12.2'
+
+    // LangChain4j - Ollama 
+    implementation 'dev.langchain4j:langchain4j-ollama:1.14.0'
     
     // Testing
     testImplementation 'junit:junit:4.13.2'

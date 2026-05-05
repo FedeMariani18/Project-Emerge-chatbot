@@ -8,7 +8,8 @@ public enum ModelProvider {
     GPT_4O_MINI("gpt-4o-mini"),
     GPT_5_1("gpt-5.1"),
     GPT_4_1_MINI("gpt-4.1-mini"),
-    OPENAI_DEFAULT(GPT_4O_MINI.getName());
+    OPENAI_DEFAULT(GPT_4O_MINI.getName()), 
+    OLLAMA_MISTRAL("mistral");
 
     private String name;
     

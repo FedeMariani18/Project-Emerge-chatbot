@@ -3,13 +3,11 @@ package it.unibo.controller;
 import javax.swing.SwingUtilities;
 
 import it.unibo.logic.Agent;
-import it.unibo.logic.ChatModelFactory;
 import it.unibo.logic.FormationProvider;
 import it.unibo.logic.FormationProviderImpl;
 import it.unibo.logic.Sender;
 import it.unibo.logic.MqttSender;
 import it.unibo.logic.ToolsHandler;
-import it.unibo.logic.ModelProvider;
 import it.unibo.view.ChatPanel;
 import it.unibo.view.ChatWindow;
 

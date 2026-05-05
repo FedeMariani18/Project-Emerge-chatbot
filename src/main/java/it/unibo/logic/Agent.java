@@ -68,8 +68,7 @@ public class Agent {
         
         ChatModelFactory factory = new ChatModelFactory();
         
-        //ChatModel model = factory.createGeminiChatModel(ModelProvider.GEMINI_2_5_FLASH.getName());
-        ChatModel model = factory.createOpenaiChatModel();
+        ChatModel model = factory.createOllamaChatModel();
 
         ChatMemory chatMemory = MessageWindowChatMemory.withMaxMessages(10);
 
