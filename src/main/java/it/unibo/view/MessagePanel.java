@@ -63,12 +63,20 @@ public class MessagePanel extends JPanel {
 
         // Dynamic Size Calculation
         int maxWidth = (int)Math.round(((double)FRAME_WIDTH) * 0.75);
-        textArea.setSize(new Dimension(maxWidth, Integer.MAX_VALUE));
-        Dimension textDim = textArea.getPreferredSize();
         
-        // If the text is narrower than 300px, the bubble shrinks (optional)
+        JTextArea tempTextArea = new JTextArea(text);
+        tempTextArea.setLineWrap(true);
+        tempTextArea.setWrapStyleWord(true);
+        tempTextArea.setFont(DEFAULT_FONT);
+        tempTextArea.setSize(maxWidth, Short.MAX_VALUE);
+        Dimension textDim = tempTextArea.getPreferredSize();
+        
+        // If the text is narrower than 300px, the bubble shrinks 
         int finalWidth = Math.min(maxWidth, textDim.width + 20); 
-        bubble.setPreferredSize(new Dimension(finalWidth, textDim.height + 35)); // +25 to make room for the time
+        bubble.setPreferredSize(new Dimension(finalWidth, textDim.height + 35)); // +n to make room for the time
+        
+        // Setting the right dimension to the text area
+        textArea.setSize(new Dimension(maxWidth, Integer.MAX_VALUE));
 
         // Assemblaggio della Bolla
         bubble.add(textArea, BorderLayout.CENTER);
