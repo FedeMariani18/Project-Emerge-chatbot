@@ -1,8 +1,10 @@
 package it.unibo.logic;
 
+import dev.langchain4j.data.message.UserMessage;
 import dev.langchain4j.memory.ChatMemory;
 import dev.langchain4j.memory.chat.MessageWindowChatMemory;
 import dev.langchain4j.model.chat.ChatModel;
+import dev.langchain4j.model.chat.response.ChatResponse;
 import dev.langchain4j.service.AiServices;
 import dev.langchain4j.service.SystemMessage;
 
@@ -12,6 +14,7 @@ public class Agent {
     private static final String SYSTEM_PROMPT = """
         Tu sei un assistente IA specializzato nel controllo di sciami di droni.
         Il tuo compito è guidare l'utente nella selezione della formazione più adatta alle sue esigenze.
+        L'utente non è specializzato sull'argomento quindi non utilizzare parole specifiche e non mostrargli dettagli che non capirebbe (come il JSON che generi)
         
         COMPORTAMENTO:
         - Sii cordiale, professionale e conciso
@@ -58,21 +61,43 @@ public class Agent {
     interface Assistant {
         @SystemMessage(SYSTEM_PROMPT)
         String chat(String message);
+
+        @SystemMessage(SYSTEM_PROMPT)
+        ChatResponse chat(UserMessage message);
     }
 
+    private static final int STANDARD_MEMORY_WINDOW = 10;
+    private static final ModelProvider STANDARD_MODEL = ModelProvider.GEMINI_2_5_FLASH;
+
+    private ChatModel model;
     private ToolsHandler tools;
+    private int currentMemorySize;
     private Assistant assistant;
+    private ChatMemory chatMemory;
+
+    private ChatModelFactory factory = new ChatModelFactory();
 
     public Agent(ToolsHandler tools) {
+        this(tools, STANDARD_MODEL, STANDARD_MEMORY_WINDOW);
+    }
+
+    public Agent(ToolsHandler tools, ModelProvider modelProvider) {
+        this(tools, modelProvider, STANDARD_MEMORY_WINDOW);
+    }
+
+    public Agent(ToolsHandler tools, ModelProvider modelProvider, int sizeMemoryWindow) {
         this.tools = tools;
-        
-        ChatModelFactory factory = new ChatModelFactory();
-        
-        ChatModel model = factory.createOllamaChatModel();
+        this.currentMemorySize = sizeMemoryWindow;
+        this.model = factory.createChatModel(modelProvider);
+        this.chatMemory = MessageWindowChatMemory.withMaxMessages(this.currentMemorySize);
 
-        ChatMemory chatMemory = MessageWindowChatMemory.withMaxMessages(10);
+        this.tools.setOnResetMemoryCallback(() -> this.resetMemory());
 
-        assistant = AiServices.builder(Assistant.class)
+        this.assistant = buildAssistant();
+    }
+
+    private Assistant buildAssistant() {
+        return AiServices.builder(Assistant.class)
             .chatModel(model)
             .chatMemory(chatMemory)
             .tools(tools)
@@ -81,5 +106,25 @@ public class Agent {
 
     public String chat(String message) {
         return assistant.chat(message);
+    }
+
+    public ChatResponse chat(UserMessage message) {
+        return assistant.chat(message);
+    }
+
+    public void changeModel(ModelProvider modelProvider) {
+        this.model = factory.createChatModel(modelProvider);
+        this.assistant = buildAssistant();
+    }
+
+    public void changeMemory(int newSizeMemoryWindow) {
+        this.currentMemorySize = newSizeMemoryWindow;
+        this.chatMemory = MessageWindowChatMemory.withMaxMessages(newSizeMemoryWindow);
+        this.assistant = buildAssistant();
+    }
+
+    public void resetMemory() {
+        this.chatMemory = MessageWindowChatMemory.withMaxMessages(this.currentMemorySize);
+        this.assistant = buildAssistant();
     }
 }

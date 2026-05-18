@@ -15,6 +15,7 @@ public class ToolsHandler {
     private FormationProvider formationProvider;
     private Sender sender;
     private ObjectMapper objMapper = new ObjectMapper();
+    private Runnable onResetMemoryCallback;
 
     public ToolsHandler(FormationProvider formationProvider, Sender sender) {
         this.formationProvider = formationProvider;
@@ -23,12 +24,13 @@ public class ToolsHandler {
 
     @Tool("Ottieni una stringa json tutte le formazioni disponibili per i droni")
     public String getAvailableFormations(){
+        System.out.println("Reading available formations...");
         return formationProvider.getFormationsJson();
     }
 
     @Tool("Valida la formazione che hai creato prima di inviarla ai droni")
     public String validateFormation(String formation) {
-        System.out.println("validazione formazione:\n " + formation);
+        System.out.println("Validating formation... :\n " + formation);
         
         try {
             JsonNode json = objMapper.readTree(formation);
@@ -42,8 +44,24 @@ public class ToolsHandler {
 
     @Tool("Invia formazione ai droni")
     public boolean sendFormationCommand(String formation) {
-        System.out.println("inviando formazione ai droni:\n" + formation);
+        System.out.println("Sending formation... :\n" + formation);
         return sender.sendFormation(formation);
+    }
+
+    @Tool("Resetta o cancella completamente la memoria della chat attuale per ricominciare da zero una nuova conversazione")
+    public String resetChatMemory() {
+        System.out.println("Resetting the Agent's memory...");
+        
+        if (onResetMemoryCallback != null) {
+            onResetMemoryCallback.run(); // Innesca il reset nell'Agente
+            return "Memory succesfull resetted";
+        }
+        
+        return "Error: impossible to reset the memory.";
+    }
+
+    public void setOnResetMemoryCallback(Runnable callback) {
+        this.onResetMemoryCallback = callback;
     }
 
     private String chackProgram(JsonNode jsonFormation) {

@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "domanda": "Dimmi tutte le formazioni disponibili per i droni",
+        "toolAtteso": "getAvailableFormations",
+        "descrizione": "Chiede al modello di elencare le formazioni disponibili"
+    },
+    {
+        "id": 2,
+        "domanda": "Valida la formazione {\"program\":\"stop\"} che voglio usare",
+        "toolAtteso": "validateFormation",
+        "descrizione": "Chiede di validare una formazione specifica"
+    },
+    {
+        "id": 3,
+        "domanda": "Invia la formazione {\"program\":\"stop\"} ai droni adesso",
+        "toolAtteso": "sendFormationCommand",
+        "descrizione": "Chiede di inviare una formazione ai droni"
+    }
+]

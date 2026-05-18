@@ -46,6 +46,11 @@ application {
     mainClass = 'it.unibo.Main'
 }
 
+task runTester(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'it.unibo.tester.MainTester'
+}
+
 tasks.named('test') {
     useJUnitPlatform()
 }
