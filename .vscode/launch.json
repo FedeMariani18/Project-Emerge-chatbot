@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "MainTester",
+            "request": "launch",
+            "mainClass": "it.unibo.validation.MainTester",
+            "projectName": "Project-Emerge-chatbot"
+        },
+        {
+            "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}"

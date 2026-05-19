@@ -2,30 +2,32 @@ package it.unibo.validation;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
  
 public class TestQuestion {
     
     @JsonProperty("id")
     private int id;
     
-    @JsonProperty("domanda")
-    private String domanda;
+    @JsonProperty("question")
+    private String question;
     
     @JsonProperty("expectedTool")
     private String expectedTool;
     
-    @JsonProperty("descrizione")
-    private String descrizione;
+    @JsonProperty("description")
+    private String description;
     
     public TestQuestion() {
     }
     
-    public TestQuestion(int id, String domanda, String expectedTool, String descrizione) {
+    public TestQuestion(int id, String question, String expectedTool, String description) {
         this.id = id;
-        this.domanda = domanda;
+        this.question = question;
         this.expectedTool = expectedTool;
-        this.descrizione = descrizione;
+        this.description = description;
     }
     
     // Getter
@@ -33,24 +35,24 @@ public class TestQuestion {
         return id;
     }
     
-    public String getDomanda() {
-        return domanda;
+    public String getQuestion() {
+        return question;
     }
     
     public String getExpectedTool() {
         return expectedTool;
     }
     
-    public String getDescrizione() {
-        return descrizione;
+    public String getDescription() {
+        return description;
     }
     
     /**
-     * Return a list of Expected Tools for the Question
+     * Return a set of Expected Tools for the Question
      * Es: "getAvailableFormations,validateFormation" → [getAvailableFormations, validateFormation]
      */
-    public List<String> getExpectedToolList() {
-        return Arrays.asList(expectedTool.split(","));
+    public Set<String> getExpectedToolList() {
+        return new HashSet<String>(List.of(expectedTool.split(",")));
     }
     
     /**
@@ -72,9 +74,9 @@ public class TestQuestion {
     public String toString() {
         return "TestQuestion{" +
                 "id=" + id +
-                ", domanda='" + domanda + '\'' +
+                ", question='" + question + '\'' +
                 ", expectedTool='" + expectedTool + '\'' +
-                ", descrizione='" + descrizione + '\'' +
+                ", description='" + description + '\'' +
                 '}';
     }
 }

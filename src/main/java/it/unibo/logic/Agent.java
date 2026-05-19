@@ -6,6 +6,7 @@ import dev.langchain4j.memory.chat.MessageWindowChatMemory;
 import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.model.chat.response.ChatResponse;
 import dev.langchain4j.service.AiServices;
+import dev.langchain4j.service.Result;
 import dev.langchain4j.service.SystemMessage;
 
 public class Agent {
@@ -63,7 +64,7 @@ public class Agent {
         String chat(String message);
 
         @SystemMessage(SYSTEM_PROMPT)
-        ChatResponse chat(UserMessage message);
+        Result<String> chat(UserMessage message);
     }
 
     private static final int STANDARD_MEMORY_WINDOW = 10;
@@ -108,7 +109,7 @@ public class Agent {
         return assistant.chat(message);
     }
 
-    public ChatResponse chat(UserMessage message) {
+    public Result<String> chat(UserMessage message) {
         return assistant.chat(message);
     }
 
