@@ -1,0 +1,16 @@
+{
+  "OLLAMA_QWEN" : {
+    "questionsResult" : [ {
+      "first" : 1.0,
+      "second" : 23628
+    }, {
+      "first" : 0.0,
+      "second" : 2545
+    }, {
+      "first" : 0.1,
+      "second" : 14962
+    } ],
+    "totalAccuracy" : 0.36666667,
+    "avgResponseTime" : 13711
+  }
+}

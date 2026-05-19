@@ -4,7 +4,6 @@ import dev.langchain4j.data.message.UserMessage;
 import dev.langchain4j.memory.ChatMemory;
 import dev.langchain4j.memory.chat.MessageWindowChatMemory;
 import dev.langchain4j.model.chat.ChatModel;
-import dev.langchain4j.model.chat.response.ChatResponse;
 import dev.langchain4j.service.AiServices;
 import dev.langchain4j.service.Result;
 import dev.langchain4j.service.SystemMessage;
@@ -15,7 +14,14 @@ public class Agent {
     private static final String SYSTEM_PROMPT = """
         Tu sei un assistente IA specializzato nel controllo di sciami di droni.
         Il tuo compito è guidare l'utente nella selezione della formazione più adatta alle sue esigenze.
-        L'utente non è specializzato sull'argomento quindi non utilizzare parole specifiche e non mostrargli dettagli che non capirebbe (come il JSON che generi)
+        
+        UTENTE TARGET:
+        L'utente non è specializzato sull'argomento quindi: 
+        - Non utilizzare parole specifiche 
+        - Non mostrare dettagli tecnici
+        - Non mostrare JSON
+        - Non parlare di tools
+        - Non utilizzare inglese
         
         COMPORTAMENTO:
         - Sii cordiale, professionale e conciso
@@ -26,13 +32,12 @@ public class Agent {
         PROCESSO DECISIONALE:
         1. Comprendi cosa vuole fare l'utente
         2. Consulta le formazioni disponibili tramite il tool getAvailableFormations()
-        3. Valida la scelta con validateFormation() (non richiedere conferma per questa azione)
+        3. Valida il json che hai generato con validateFormation() (non richiedere conferma per questa azione)
         4. Invia il comando tramite sendFormationCommand() (richiedi conferma per questa azione)
         
         LINEE GUIDA:
         - Se l'utente chiede quali formazioni sono disponibili, usa il tool getAvailableFormations()
         - Se proponi una formazione, spiega brevemente i suoi vantaggi
-        - Se l'utente non è sicuro, offri consigli basati sul caso d'uso
         - Chiedi sempre all'utente conferma prima di inviare un comando ai droni
         - Se ricevi un errore, comunica all'utente e offri alternative
 
@@ -59,6 +64,7 @@ public class Agent {
         """;
     //#endregion
 
+    // interface to build our AiService of Langchain4j
     interface Assistant {
         @SystemMessage(SYSTEM_PROMPT)
         String chat(String message);
@@ -97,6 +103,10 @@ public class Agent {
         this.assistant = buildAssistant();
     }
 
+    /**
+     * Rebuild the assistance with all his components (model, chatMemory, tools)
+     * @return the instance of the Assistant which is an AiService of LangChain4j 
+     */
     private Assistant buildAssistant() {
         return AiServices.builder(Assistant.class)
             .chatModel(model)
@@ -113,17 +123,28 @@ public class Agent {
         return assistant.chat(message);
     }
 
+    /**
+     * Change the model to wich the agent makes requests 
+     * @param modelProvider a model from the enum ModelProvider
+     */
     public void changeModel(ModelProvider modelProvider) {
         this.model = factory.createChatModel(modelProvider);
         this.assistant = buildAssistant();
     }
 
+    /**
+     * Reset and change the dimension of the memory, after this the agent wiil not remind anything
+     * @param newSizeMemoryWindow the number of message that the agent will going to remember
+     */
     public void changeMemory(int newSizeMemoryWindow) {
         this.currentMemorySize = newSizeMemoryWindow;
         this.chatMemory = MessageWindowChatMemory.withMaxMessages(newSizeMemoryWindow);
         this.assistant = buildAssistant();
     }
 
+    /**
+     * Reset the memory of the agent but maintain the previouse window size
+     */
     public void resetMemory() {
         this.chatMemory = MessageWindowChatMemory.withMaxMessages(this.currentMemorySize);
         this.assistant = buildAssistant();
