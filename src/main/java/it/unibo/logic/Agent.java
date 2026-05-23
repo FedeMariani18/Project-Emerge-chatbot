@@ -73,8 +73,8 @@ public class Agent {
         Result<String> chat(UserMessage message);
     }
 
-    private static final int STANDARD_MEMORY_WINDOW = 10;
-    private static final ModelProvider STANDARD_MODEL = ModelProvider.GEMINI_2_5_FLASH;
+    private static final int STANDARD_MEMORY_WINDOW = 25;
+    private static final ModelProvider STANDARD_MODEL = ModelProvider.OPENAI_DEFAULT;
 
     private ChatModel model;
     private ToolsHandler tools;

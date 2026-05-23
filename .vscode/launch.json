@@ -9,7 +9,8 @@
             "name": "MainTester",
             "request": "launch",
             "mainClass": "it.unibo.validation.MainTester",
-            "projectName": "Project-Emerge-chatbot"
+            "projectName": "Project-Emerge-chatbot",
+            "envFile": "${workspaceFolder}/.env"
         },
         {
             "type": "java",
