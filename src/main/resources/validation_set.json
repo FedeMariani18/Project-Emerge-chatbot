@@ -38,13 +38,13 @@
     {
         "id": 7,
         "question": "Creami la formazione per il programma lineFormation e dopodichè validala direttamente",
-        "expectedTool": "getAvailableFormations, validateFormation",
+        "expectedTool": "getAvailableFormations,validateFormation",
         "description": "Chiede al modello di creare una formazione e di validarla subito dopo"
     },
     {
         "id": 8,
         "question": "Valida la formazione {\"program\":\"stop\"} e dopodichè inviala direttamente ai droni",
-        "expectedTool": "validateFormation, sendFormationCommand",
+        "expectedTool": "validateFormation,sendFormationCommand",
         "description": "Chiede di validare una formazione specifica e di inviarla ai droni"
     },
     {
@@ -55,8 +55,8 @@
     },
     {
         "id": 10,
-        "question": "Cerca tra le formazioni circleShape, utilizza tutti i dati di default e dopodichè validala ed inviala direttamente ai droni senza chiedere la conferma",
-        "expectedTool": "getAvailableFormations, validateFormation, sendFormationCommand",
+        "question": "Cerca circleShape tra le formazioni, utilizza tutti i dati di default e dopodichè validala ed inviala direttamente ai droni senza chiedere la conferma",
+        "expectedTool": "getAvailableFormations,validateFormation,sendFormationCommand",
         "description": "Chiede al modello di specificare le sue funzionalità"
     },
     {

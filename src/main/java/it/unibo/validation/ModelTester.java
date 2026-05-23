@@ -94,7 +94,6 @@ public class ModelTester {
                             : new HashSet<>();
 
                         Set<String> expectedTools = question.getExpectedToolList();
-
                         if (usedTools.equals(expectedTools)) {
                             nCorrectResponse += 1;
                         }
