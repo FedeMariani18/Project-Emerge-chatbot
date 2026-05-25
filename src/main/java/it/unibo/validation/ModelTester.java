@@ -12,7 +12,6 @@ import dev.langchain4j.data.message.UserMessage;
 import dev.langchain4j.exception.HttpException;
 import dev.langchain4j.service.Result;
 import it.unibo.common.ModelDetail;
-import it.unibo.common.Pair;
 import it.unibo.logic.Agent;
 import it.unibo.logic.FormationProvider;
 import it.unibo.logic.ToolsHandler;

@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
 import it.unibo.common.ModelDetail;
-import it.unibo.common.Pair;
 import it.unibo.logic.ModelProvider;
 
 import java.io.File;
