@@ -29,3 +29,6 @@ replay_pid*
 
 # environment variables for Api-Key
 .env
+
+# banchmark report
+output_benchmark*

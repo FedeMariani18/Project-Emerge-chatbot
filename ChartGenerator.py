@@ -177,8 +177,8 @@ def plot_consistency_stacked_bar(pdf_worker, df_detailed):
     df_pivot.plot(kind='barh', stacked=True, ax=ax, color=colors, width=0.5)
     ax.invert_yaxis()
     
-    ax.set_title("Model Consistency", fontsize=14, fontweight="bold", pad=15)
-    ax.set_xlabel("Number of Benchmark Queries", fontsize=11)
+    ax.set_title("Accuracy per question", fontsize=14, fontweight="bold", pad=15)
+    ax.set_xlabel("Number of Benchmark Questions", fontsize=11)
     ax.set_ylabel("Models", fontsize=11)
     ax.grid(axis="x", linestyle="--", alpha=0.5)
     ax.legend(title="Execution Outcomes", loc='lower right')
