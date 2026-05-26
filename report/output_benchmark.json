@@ -1,0 +1,382 @@
+{
+  "OLLAMA_MISTRAL" : {
+    "questionsResult" : [ {
+      "accuracy" : 0.0,
+      "avgTime" : 81481
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 51821
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 76345
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 30600
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 45199
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 43484
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 53087
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 63527
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 57143
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 51785
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 72184
+    } ],
+    "totalAccuracy" : 0.0,
+    "avgResponseTime" : 56969
+  },
+  "OLLAMA_GEMMA4" : {
+    "questionsResult" : [ {
+      "accuracy" : 1.0,
+      "avgTime" : 80604
+    }, {
+      "accuracy" : 1.0,
+      "avgTime" : 43384
+    }, {
+      "accuracy" : 0.2,
+      "avgTime" : 75893
+    }, {
+      "accuracy" : 1.0,
+      "avgTime" : 52410
+    }, {
+      "accuracy" : 1.0,
+      "avgTime" : 43677
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 69944
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 83233
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 54877
+    }, {
+      "accuracy" : 1.0,
+      "avgTime" : 54031
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 122551
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 78071
+    } ],
+    "totalAccuracy" : 0.47272727,
+    "avgResponseTime" : 68970
+  },
+  "GEMINI_2_5_FLASH" : {
+    "questionsResult" : [ {
+      "accuracy" : 1.0,
+      "avgTime" : 2568
+    }, {
+      "accuracy" : 1.0,
+      "avgTime" : 1628
+    }, {
+      "accuracy" : 0.9,
+      "avgTime" : 2164
+    }, {
+      "accuracy" : 1.0,
+      "avgTime" : 4564
+    }, {
+      "accuracy" : 1.0,
+      "avgTime" : 2134
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 3002
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 4842
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 2950
+    }, {
+      "accuracy" : 1.0,
+      "avgTime" : 3275
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 8510
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 1714
+    } ],
+    "totalAccuracy" : 0.53636366,
+    "avgResponseTime" : 3395
+  },
+  "OPENAI_GPT_4O_MINI" : {
+    "questionsResult" : [ {
+      "accuracy" : 1.0,
+      "avgTime" : 7897
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 1809
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 1792
+    }, {
+      "accuracy" : 1.0,
+      "avgTime" : 2596
+    }, {
+      "accuracy" : 0.3,
+      "avgTime" : 2254
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 2288
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 2554
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 1642
+    }, {
+      "accuracy" : 1.0,
+      "avgTime" : 3574
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 2688
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 1790
+    } ],
+    "totalAccuracy" : 0.3,
+    "avgResponseTime" : 2808
+  },
+  "OLLAMA_QWEN" : {
+    "questionsResult" : [ {
+      "accuracy" : 1.0,
+      "avgTime" : 21156
+    }, {
+      "accuracy" : 0.1,
+      "avgTime" : 4655
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 13449
+    }, {
+      "accuracy" : 1.0,
+      "avgTime" : 7886
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 5122
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 8270
+    }, {
+      "accuracy" : 0.1,
+      "avgTime" : 12905
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 6465
+    }, {
+      "accuracy" : 1.0,
+      "avgTime" : 11165
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 16861
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 5344
+    } ],
+    "totalAccuracy" : 0.29090908,
+    "avgResponseTime" : 10298
+  },
+  "GEMINI_2_5_PRO" : {
+    "questionsResult" : [ {
+      "accuracy" : 0.9,
+      "avgTime" : 9046
+    }, {
+      "accuracy" : 1.0,
+      "avgTime" : 6613
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 8336
+    }, {
+      "accuracy" : 1.0,
+      "avgTime" : 10388
+    }, {
+      "accuracy" : 0.9,
+      "avgTime" : 9413
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 10476
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 7462
+    }, {
+      "accuracy" : 0.3,
+      "avgTime" : 11546
+    }, {
+      "accuracy" : 1.0,
+      "avgTime" : 7996
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 11946
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 5935
+    } ],
+    "totalAccuracy" : 0.46363637,
+    "avgResponseTime" : 9014
+  },
+  "GEMINI_2_5_FLASH_LITE" : {
+    "questionsResult" : [ {
+      "accuracy" : 1.0,
+      "avgTime" : 3310
+    }, {
+      "accuracy" : 0.4,
+      "avgTime" : 2052
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 1898
+    }, {
+      "accuracy" : 1.0,
+      "avgTime" : 2406
+    }, {
+      "accuracy" : 1.0,
+      "avgTime" : 2106
+    }, {
+      "accuracy" : 0.3,
+      "avgTime" : 1957
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 1527
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 1684
+    }, {
+      "accuracy" : 1.0,
+      "avgTime" : 2549
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 1470
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 1143
+    } ],
+    "totalAccuracy" : 0.42727274,
+    "avgResponseTime" : 2009
+  },
+  "OLLAMA_MISTRAL_7B" : {
+    "questionsResult" : [ {
+      "accuracy" : 0.0,
+      "avgTime" : 82975
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 50574
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 68670
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 36363
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 47178
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 46240
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 57377
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 53215
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 52137
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 41097
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 45674
+    } ],
+    "totalAccuracy" : 0.0,
+    "avgResponseTime" : 52864
+  },
+  "OPENAI_GPT_4_1_MINI" : {
+    "questionsResult" : [ {
+      "accuracy" : 1.0,
+      "avgTime" : 1809
+    }, {
+      "accuracy" : 0.7,
+      "avgTime" : 4839
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 1507
+    }, {
+      "accuracy" : 1.0,
+      "avgTime" : 2267
+    }, {
+      "accuracy" : 1.0,
+      "avgTime" : 1743
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 2372
+    }, {
+      "accuracy" : 0.8,
+      "avgTime" : 2130
+    }, {
+      "accuracy" : 1.0,
+      "avgTime" : 6378
+    }, {
+      "accuracy" : 1.0,
+      "avgTime" : 5461
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 2384
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 1542
+    } ],
+    "totalAccuracy" : 0.59090906,
+    "avgResponseTime" : 2948
+  },
+  "OPENAI_GPT_5_1" : {
+    "questionsResult" : [ {
+      "accuracy" : 1.0,
+      "avgTime" : 7806
+    }, {
+      "accuracy" : 1.0,
+      "avgTime" : 4569
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 3878
+    }, {
+      "accuracy" : 1.0,
+      "avgTime" : 4065
+    }, {
+      "accuracy" : 0.5,
+      "avgTime" : 5877
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 5688
+    }, {
+      "accuracy" : 0.8,
+      "avgTime" : 7412
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 5142
+    }, {
+      "accuracy" : 1.0,
+      "avgTime" : 5174
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 11739
+    }, {
+      "accuracy" : 0.0,
+      "avgTime" : 3199
+    } ],
+    "totalAccuracy" : 0.48181817,
+    "avgResponseTime" : 5868
+  }
+}
