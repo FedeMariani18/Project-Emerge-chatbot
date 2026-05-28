@@ -1,5 +1,7 @@
 package it.unibo.logic;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 public enum ModelProvider {
     OLLAMA_MISTRAL("mistral", ProviderType.OLLAMA),
     OLLAMA_QWEN("qwen2.5:3b", ProviderType.OLLAMA),
@@ -15,9 +17,6 @@ public enum ModelProvider {
     OPENAI_GPT_5_1("gpt-5.1", ProviderType.OPENAI),
     OPENAI_GPT_4_1_MINI("gpt-4.1-mini", ProviderType.OPENAI),
     OPENAI_DEFAULT(OPENAI_GPT_4O_MINI.getName(), ProviderType.OPENAI);
-    // OLLAMA_NEURAL_CHAT("neural-chat:7b-v3.2", ProviderType.OLLAMA),
-    // OLLAMA_DEEPSEEK_R1("deepseek-r1:1.5b", ProviderType.OLLAMA),
-    // OLLAMA_ORCA_MINI_3B("orca-mini:3b", ProviderType.OLLAMA);
 
     public enum ProviderType {
         GEMINI, OPENAI, OLLAMA
@@ -31,6 +30,7 @@ public enum ModelProvider {
         this.providerType = providerType;
     }
 
+    @JsonValue
     public String getName() {
         return this.name;
     }

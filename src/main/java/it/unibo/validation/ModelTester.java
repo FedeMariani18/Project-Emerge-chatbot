@@ -36,7 +36,8 @@ public class ModelTester {
         FormationProvider formationProvider = new StubFormationProvider();
         Sender sender = new StubSender();
 
-        this.models = Arrays.stream(ModelProvider.values()).toList();
+        // this.models = Arrays.stream(ModelProvider.values()).toList();
+        this.models = List.of(ModelProvider.GEMINI_2_5_FLASH);
         // to check only local models (by OLLAMA)
         // this.models = this.models.stream().filter(m -> m.getProviderType().equals(ModelProvider.ProviderType.OLLAMA)).toList();
 
