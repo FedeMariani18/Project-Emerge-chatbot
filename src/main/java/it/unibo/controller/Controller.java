@@ -10,9 +10,9 @@ public class Controller {
     ChatView view;
     Model model;
     
-    public Controller() {
-        this.view = new ChatWindow();
-        this.model = new ModelImpl();
+    public Controller(ChatView view, Model model) {
+        this.view = view;
+        this.model = model;
 
         // To set the action listener of the send button
         this.view.setOnMessageSent(userInput -> processUserInput(userInput));
