@@ -43,12 +43,16 @@ public class ChatWindow extends JFrame implements ChatView{
 
     @Override
     public void showLoading(Boolean show) {
-        getChatPanel().showLoading(show);    
+        SwingUtilities.invokeLater(() -> {
+            getChatPanel().showLoading(show);
+        });    
     }
 
     @Override
     public void setEnabled(Boolean enabled) {
-        getChatPanel().setEnabled(true);
+        SwingUtilities.invokeLater(() -> {
+            getChatPanel().setEnabled(true);
+        });
     }
 
     @Override
