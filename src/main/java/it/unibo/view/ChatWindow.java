@@ -3,10 +3,11 @@ package it.unibo.view;
 import javax.swing.*;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.util.function.Consumer;
 
 import static it.unibo.common.Constants.*;
 
-public class ChatWindow extends JFrame {
+public class ChatWindow extends JFrame implements ChatView{
 
     ChatPanel chatPanel;
 
@@ -22,7 +23,38 @@ public class ChatWindow extends JFrame {
         add(chatPanel, BorderLayout.CENTER);
     }
 
-    public ChatPanel getChatPanel(){
+    private ChatPanel getChatPanel(){
         return chatPanel;
     }
+
+    @Override
+    public void setVisible(Boolean visible) {
+        SwingUtilities.invokeLater(() -> {
+            this.setVisible(true);
+        });
+    }
+
+    @Override
+    public void showAgentMessage(String response) {
+        SwingUtilities.invokeLater(() -> {
+            getChatPanel().displayAgentMessage(response);
+        });
+    }
+
+    @Override
+    public void showLoading(Boolean show) {
+        getChatPanel().showLoading(show);    
+    }
+
+    @Override
+    public void setEnabled(Boolean enabled) {
+        getChatPanel().setEnabled(true);
+    }
+
+    @Override
+    public void setOnMessageSent(Consumer<String> handler) {
+        getChatPanel().setOnMessageSent(handler);
+    }
+
+    
 }

@@ -1,25 +1,21 @@
 package it.unibo.controller;
 
-import javax.swing.SwingUtilities;
-
 import it.unibo.logic.Agent;
 import it.unibo.logic.FormationProvider;
 import it.unibo.logic.FormationProviderImpl;
 import it.unibo.logic.Sender;
 import it.unibo.logic.MqttSender;
 import it.unibo.logic.ToolsHandler;
-import it.unibo.view.ChatPanel;
+import it.unibo.view.ChatView;
 import it.unibo.view.ChatWindow;
 
 
 public class Controller {
-    ChatWindow chatWindow;
-    ChatPanel chatPanel;
+    ChatView view;
     Agent agent;
     
     public Controller() {
-        chatWindow = new ChatWindow();
-        chatPanel = chatWindow.getChatPanel();
+        view = new ChatWindow();
 
         FormationProvider formationProvider = new FormationProviderImpl();
         Sender sender = new MqttSender();
@@ -29,35 +25,29 @@ public class Controller {
         agent = new Agent(tools);
         
         // To set the action listener of the send button
-        chatPanel.setOnMessageSent(userInput -> processUserInput(userInput));
+        view.setOnMessageSent(userInput -> processUserInput(userInput));
     }
 
     public void processUserInput(String userMessage) {
-        chatPanel.setEnabled(false);
-        chatPanel.showLoading(true);
+        view.setEnabled(false);
+        view.showLoading(true);
 
         new Thread(() -> {
             try {
                 String response = agent.chat(userMessage);
                 
                 // display the response in the GUI
-                SwingUtilities.invokeLater(() -> {
-                    chatPanel.displayAgentMessage(response);
-                });
+                view.showAgentMessage(response);
             } catch (Exception e) {
-                SwingUtilities.invokeLater(() -> {
-                    chatPanel.displayAgentMessage("Errore: " + e.getMessage());
-                });
+                view.showAgentMessage("Errore: " + e.getMessage());
             } finally {
-                chatPanel.showLoading(false);
-                chatPanel.setEnabled(true);
+                view.showLoading(false);
+                view.setEnabled(true);
             }
         }).start();
     }
 
     public void start(){
-        SwingUtilities.invokeLater(() -> {
-            chatWindow.setVisible(true);
-        });
+        view.setVisible(true);
     }
 }

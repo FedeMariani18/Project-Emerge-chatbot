@@ -13,7 +13,7 @@ public class MqttSender implements Sender{
 
     public MqttSender() {}
 
-    public boolean sendMqttMessage(String topic, String message) {
+    private boolean sendMqttMessage(String topic, String message) {
         try {
             client.publish(topic, message.getBytes(), 1, false);
             return true;
