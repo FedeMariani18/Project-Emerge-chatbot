@@ -11,7 +11,7 @@ public class ModelImpl implements Model {
 
         sender = new MqttSender();
 
-        if (!sender.connect()) {throw new IllegalStateException("Unable to connect to MQTT broker");}
+        if (!sender.connect()) {System.out.println("Unable to connect to MQTT broker");}
 
         ToolsHandler tools = new ToolsHandler(formationProvider, sender);
 
