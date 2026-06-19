@@ -1,9 +1,7 @@
 package it.unibo.controller;
 
 import it.unibo.logic.Model;
-import it.unibo.logic.ModelImpl;
 import it.unibo.view.ChatView;
-import it.unibo.view.ChatWindow;
 
 
 public class Controller {
