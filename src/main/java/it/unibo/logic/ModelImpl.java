@@ -24,7 +24,7 @@ public class ModelImpl implements Model {
     }
 
     @Override
-    public void close() {
+    public void closeConnection() {
         sender.disconnect();
     }
 }
