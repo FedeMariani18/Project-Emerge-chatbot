@@ -1,68 +1,68 @@
 [
     {
         "id": 1,
+        "question": "Ciao, cosa puoi fare?",
+        "expectedTool": "",
+        "description": "Chiede al modello di specificare le sue funzionalità"
+    },
+    {
+        "id": 2,
         "question": "Dimmi tutte le formazioni disponibili per i droni",
         "expectedTool": "getAvailableFormations",
         "description": "Chiede al modello di elencare le formazioni disponibili"
     },
     {
-        "id": 2,
+        "id": 3,
         "question": "Valida la formazione {\"program\":\"stop\"}",
         "expectedTool": "validateFormation",
         "description": "Chiede di validare una formazione specifica"
     },
     {
-        "id": 3,
+        "id": 4,
         "question": "Invia la formazione {\"program\":\"stop\"} ai droni adesso",
         "expectedTool": "sendFormationCommand",
         "description": "Chiede di inviare una formazione ai droni"
     },
     {
-        "id": 4,
+        "id": 5,
         "question": "Tra le formazioni disponibili hai circleShape?",
         "expectedTool": "getAvailableFormations",
         "description": "Chiede al modello di trovare una formazione specifica tra quelle disponibili"
     },
     {
-        "id": 5,
+        "id": 6,
         "question": "Valida la formazione {\"program\":\"lineShape\", \"interDistanceLine\":0.4, \"collisionArea\":0.3, \"stabilityThreshold\":0.1}",
         "expectedTool": "validateFormation",
         "description": "Chiede di validare una formazione specifica"
     },
     {
-        "id": 6,
+        "id": 7,
         "question": "Invia la formazione {\"program\":\"lineShape\", \"interDistanceLine\":0.4, \"collisionArea\":0.3, \"stabilityThreshold\":0.1} ai droni adesso",
         "expectedTool": "sendFormationCommand",
         "description": "Chiede di inviare una formazione ai droni"
     },
     {
-        "id": 7,
-        "question": "Creami la formazione per il programma lineFormation e dopodichè validala direttamente",
-        "expectedTool": "getAvailableFormations,validateFormation",
-        "description": "Chiede al modello di creare una formazione e di validarla subito dopo"
-    },
-    {
         "id": 8,
-        "question": "Valida la formazione {\"program\":\"stop\"} e dopodichè inviala direttamente ai droni",
-        "expectedTool": "validateFormation,sendFormationCommand",
-        "description": "Chiede di validare una formazione specifica e di inviarla ai droni"
-    },
-    {
-        "id": 9,
         "question": "cerca tra le formazioni disponibile una formazione a cerchio ed una a quadrato",
         "expectedTool": "getAvailableFormations",
         "description": "Chiede di cercare tra due specifiche istanze tra le formazioni disponibili"
     },
     {
+        "id": 9,
+        "question": "Creami la formazione per il programma lineFormation utilizzando i parametri di default e dopodichè validala direttamente",
+        "expectedTool": "getAvailableFormations,validateFormation",
+        "description": "Chiede al modello di creare una formazione e di validarla subito dopo"
+    },
+    {
         "id": 10,
-        "question": "Cerca circleShape tra le formazioni, utilizza tutti i dati di default e dopodichè validala ed inviala direttamente ai droni senza chiedere la conferma",
-        "expectedTool": "getAvailableFormations,validateFormation,sendFormationCommand",
-        "description": "Chiede al modello di specificare le sue funzionalità"
+        "question": "Valida la formazione {\"program\":\"stop\"} e dopodichè inviala direttamente ai droni",
+        "expectedTool": "validateFormation,sendFormationCommand",
+        "description": "Chiede di validare una formazione specifica e di inviarla ai droni"
     },
     {
         "id": 11,
-        "question": "Ciao, cosa puoi fare?",
-        "expectedTool": "",
-        "description": "Chiede al modello di specificare le sue funzionalità"
+        "question": "Cerca circleShape tra le formazioni, utilizza tutti i dati di default per creare la formazione e dopodichè validala ed inviala direttamente ai droni senza chiedere la conferma",
+        "expectedTool": "getAvailableFormations,validateFormation,sendFormationCommand",
+        "description": "Chiede al modello di iniziallizzare una formazione con i valori di default e dopodichè validarla e inviarla ai droni"
     }
 ]

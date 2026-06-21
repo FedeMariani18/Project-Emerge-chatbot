@@ -47,10 +47,13 @@ public class TestQuestion {
     }
     
     /**
-     * Return a set of Expected Tools for the Question
+     * Return a set of Expected Tools for the Question, and an empty Set if there's no expectedTools
      * Es: "getAvailableFormations,validateFormation" → [getAvailableFormations, validateFormation]
      */
     public Set<String> getExpectedToolList() {
+        if (expectedTool == null || expectedTool.isBlank()) {
+            return Set.of();
+        }
         return new HashSet<String>(List.of(expectedTool.split(",")));
     }
     
