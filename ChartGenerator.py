@@ -602,6 +602,8 @@ def main():
         with PdfPages(pdf_filename) as pdf:
             plot_accuracy_chart(pdf, df_summary)
 
+            plot_accuracy_heatmap(pdf, df_detailed)
+
             plot_response_time_boxplot_cloud(pdf, cloud_detailed)
             plot_response_time_boxplot_local(pdf, local_detailed)
 
@@ -609,8 +611,6 @@ def main():
             plot_tradeoff_scatterplot_local(pdf, local_summary)
 
             plot_pass_at_k_chart(pdf, df_detailed)
-
-            plot_accuracy_heatmap(pdf, df_detailed)
 
         print(f"Execution finished! Complete report saved as: '{pdf_filename}'")
 

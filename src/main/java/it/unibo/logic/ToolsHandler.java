@@ -22,7 +22,7 @@ public class ToolsHandler {
         this.sender = sender;
     }
 
-    @Tool("Ottieni una stringa json tutte le formazioni disponibili per i droni")
+    @Tool("Ottieni una stringa in formato json con tutte le formazioni disponibili per i droni")
     public String getAvailableFormations(){
         System.out.println("Reading available formations...");
         return formationProvider.getFormationsJson();

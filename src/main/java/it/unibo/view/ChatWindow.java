@@ -30,7 +30,7 @@ public class ChatWindow extends JFrame implements ChatView{
     @Override
     public void setVisible(Boolean visible) {
         SwingUtilities.invokeLater(() -> {
-            this.setVisible(true);
+            this.setVisible(visible);
         });
     }
 
@@ -51,7 +51,7 @@ public class ChatWindow extends JFrame implements ChatView{
     @Override
     public void setEnabled(Boolean enabled) {
         SwingUtilities.invokeLater(() -> {
-            getChatPanel().setEnabled(true);
+            getChatPanel().setEnabled(enabled);
         });
     }
 

@@ -27,7 +27,7 @@ public class Controller {
                 // display the response in the GUI
                 view.showAgentMessage(response);
             } catch (Exception e) {
-                view.showAgentMessage("Errore: " + e.getMessage());
+                view.showAgentMessage("Error: " + e.getMessage());
             } finally {
                 view.showLoading(false);
                 view.setEnabled(true);

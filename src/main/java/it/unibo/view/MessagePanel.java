@@ -46,7 +46,7 @@ public class MessagePanel extends JPanel {
         bubble.setBorder(BorderFactory.createEmptyBorder(8, 10, 8, 10));
 
         // Text Area
-        JTextArea textArea = new JTextArea(text);
+        JTextArea textArea = new JTextArea(text + "\n");
         textArea.setLineWrap(true);
         textArea.setWrapStyleWord(true);
         textArea.setEditable(false);
